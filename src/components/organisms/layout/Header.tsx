@@ -1,4 +1,4 @@
-import { memo, FC } from 'react';
+import { memo, useCallback, FC } from 'react';
 import {
   Flex,
   Heading,
@@ -6,12 +6,18 @@ import {
   Box,
   useDisclosure
 } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
 
 import { MenuIconButton } from '../../atoms/button/MenuIconButton';
 import { MenuDrawer } from '../../molecules/MenuDrawer';
 
 export const Header: FC = memo(() => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const navigate = useNavigate();
+
+  const onClickHome = useCallback(() => navigate('/home'), [navigate]);
+  const onClickUserManagement= useCallback(() => navigate('/user_management'), [navigate]);
+  const onClickSetting = useCallback(() => navigate('/setting'), [navigate]);
 
   return (
     <>
@@ -32,6 +38,7 @@ export const Header: FC = memo(() => {
           <Heading
             as="h1"
             fontSize={{ base: "md", md: "lg" }}
+            onClick={onClickHome}
           >
             User Management Application
           </Heading>
@@ -43,13 +50,13 @@ export const Header: FC = memo(() => {
           display={{ base: "none", md: "flex" }}
         >
           <Box pr={4}>
-            <Link>User list</Link>
+            <Link onClick={onClickUserManagement}>User list</Link>
           </Box>
-          <Link>Setting</Link>
+          <Link onClick={onClickSetting}>Setting</Link>
         </Flex>
         <MenuIconButton onOpen={onOpen} />
       </Flex>
-      <MenuDrawer onClose={onClose} isOpen={isOpen} />
+      <MenuDrawer onClose={onClose} isOpen={isOpen} onClickHome={onClickHome} onClickUserManagement={onClickUserManagement} onClickSetting={onClickSetting} />
     </>
   )
 });
