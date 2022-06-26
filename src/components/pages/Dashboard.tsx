@@ -1,11 +1,13 @@
 import { memo, FC } from 'react';
+import { Outlet } from "react-router-dom";
 
 import { Header } from '../organisms/layout/Header';
 
-export const Login: FC = memo(() => {
+export const Dashboard: FC = memo(() => {
   return (
     <>
-      <p>HERE IS LOGIN PAGE</p>
+      <Header />
+      <Outlet />
     </>
   )
 });
