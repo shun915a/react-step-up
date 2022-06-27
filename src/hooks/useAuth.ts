@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react';
 import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
+import { User } from '../types/api/user';
 
 export const useAuth = () => {
   const navigate = useNavigate();
