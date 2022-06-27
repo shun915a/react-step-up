@@ -1,4 +1,4 @@
-import { memo, FC, useState } from 'react';
+import { ChangeEvent, memo, FC, useState } from 'react';
 import {
   Flex,
   Box,
@@ -15,7 +15,8 @@ import { PrimaryButton } from '../atoms/button/PrimaryButton';
 export const Login: FC = memo(() => {
   const [userId, setUserId] = useState('');
 
-  const onChangeUserId = (e: ChangeEvent<HTMLInputElement>) => setUseId(e.target.value);
+  const onChangeUserId = (e: ChangeEvent<HTMLInputElement>) =>
+    setUserId(e.target.value);
 
   return (
     <Flex
@@ -33,7 +34,7 @@ export const Login: FC = memo(() => {
         <Heading as="h1" size="lg" textAlign="center">User Management Appliation</Heading>
         <Divider my={4} />
         <Stack spacing={6} py={4} px={10}>
-          <Input placeholder="User ID" value={useId} onChange={onChangeUserId} />
+          <Input placeholder="User ID" value={userId} onChange={onChangeUserId} />
           <PrimaryButton>Login</PrimaryButton>
         </Stack>
       </Box>
