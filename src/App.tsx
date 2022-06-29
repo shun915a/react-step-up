@@ -5,10 +5,11 @@ import {
 } from "@chakra-ui/react"
 import { BrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
-const queryClient = new QueryClient();
 
 import theme from "./theme/theme";
 import { Router } from './router/Router'
+
+const queryClient = new QueryClient();
 
 export const App = () => (
   <ChakraProvider theme={theme}>
