@@ -15,13 +15,13 @@ import { useAuth } from '../../hooks/useAuth';
 
 export const Login: FC = memo(() => {
   const [userId, setUserId] = useState('');
-  const { login } = useAuth();
+  const { login, loading } = useAuth();
 
   const onChangeUserId = (e: ChangeEvent<HTMLInputElement>) =>
     setUserId(e.target.value);
 
   const onClickLogin = () => {
-    login();
+    login('1');
   };
 
   return (

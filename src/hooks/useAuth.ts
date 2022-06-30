@@ -6,32 +6,34 @@ import { User } from '../types/api/user';
 
 export const useAuth = () => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
-  const { data, isLoading, isError } = useQuery('user', fetchUser(id));
+  const { data, isLoading, isError } = useQuery('user', fetchUser);
 
-  const login = useCallback(() => {
+  const login = (id: string) => {
     if (isLoading)  {
-      console.log('isLoading');
-      return isLoading;
+      return setLoading(isLoading);
     };
+
+    setLoading(isLoading);
 
     if (isError) {
       return alert('Login failed')
     };
     
     if (data) {
-      console.log(data)
+      console.log(data[Number(id)])
       return navigate('/home');
     };
     
     alert('User not found');
-  }, [navigate]);
+  };
 
-  return { login }
+  return { login, loading }
 };
 
 
-const fetchUser = async (id: string) => {
-  const res = await fetch(`https://jsonplaceholder.typicode.com/users${id}`);
+const fetchUser = async () => {
+  const res = await fetch(`https://jsonplaceholder.typicode.com/users`);
   return res.json();
 };
