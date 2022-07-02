@@ -5,7 +5,6 @@ import {
   Divider,
   Heading,
   Input,
-  Button,
   Stack
 } from '@chakra-ui/react';
 
@@ -21,7 +20,7 @@ export const Login: FC = memo(() => {
     setUserId(e.target.value);
 
   const onClickLogin = () => {
-    login('1');
+    login(userId);
   };
 
   return (
@@ -43,14 +42,16 @@ export const Login: FC = memo(() => {
           <Input
             placeholder="User ID"
             value={userId}
-            onChange={onChangeUserId} 
+            onChange={onChangeUserId}
           />
           <PrimaryButton
+            disabled={userId === ''}
+            loading={loading}
+            onClick={onClickLogin}
           >
             Login
           </PrimaryButton>
         </Stack>
-        <Button onClick={onClickLogin} />
       </Box>
     </Flex>
   )
